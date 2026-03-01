@@ -2,6 +2,8 @@ import os
 from sqlalchemy import text
 from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
+
 from api import user, restaurant
 from database.connection import engine  # 추가된 부분 1
 from database.orm import Base           # 추가된 부분 2
@@ -57,8 +59,9 @@ app.include_router(restaurant.router)
 
 
 @app.get("/") # 데이터를 보거나 가져오는 행위
-def health_check():
-    return {"msg": "맛집 서버 살아있음!"}
+def read_root():
+    # 2. 친구들이 접속하면 static 폴더 안에 있는 index.html을 보여줘!
+    return FileResponse("static/index.html")
 # 서버가 잘 켜졌는지 확인하는 가장 기본적인 테스트
 # 인터넷 주소창에 http: //localhost:8000/ 치면 msg가 뜨면 에러 없음
 
