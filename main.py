@@ -1,3 +1,5 @@
+import redis
+import json
 import os
 from sqlalchemy import text
 from fastapi.staticfiles import StaticFiles
@@ -14,6 +16,8 @@ from database.connection import engine
 
 
 app = FastAPI()
+# Redis 연결 (로컬호스트의 6379 포트)
+rd = redis.StrictRedis(host='localhost', port=6379, db=0, decode_responses=True)
 # orm.py 작성 설계도 완성, DB 상태 테이블 없음
 # main.py 실행 (create_all) DB User 테이블 생성됨
 # [핵심] 서버가 켜질 때, DB에 테이블이 없으면 자동으로 만들어라!
