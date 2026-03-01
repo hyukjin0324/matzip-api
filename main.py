@@ -57,11 +57,10 @@ Base.metadata.create_all(bind=engine)
 app.include_router(user.router)
 app.include_router(restaurant.router)
 
-
-@app.get("/") # 데이터를 보거나 가져오는 행위
+@app.get("/")
 def read_root():
-    # 2. 친구들이 접속하면 static 폴더 안에 있는 index.html을 보여줘!
-    return FileResponse("static/index.html")
-# 서버가 잘 켜졌는지 확인하는 가장 기본적인 테스트
-# 인터넷 주소창에 http: //localhost:8000/ 치면 msg가 뜨면 에러 없음
+    # 현재 파일 위치를 기준으로 절대 경로를 찾아서 index.html을 보여줍니다.
+    current_path = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(current_path, "static", "index.html")
+    return FileResponse(file_path)
 
