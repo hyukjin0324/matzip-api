@@ -1,0 +1,7 @@
+
+# 도커 상자에 굳이 넣을 필요 없는 파일들을 제외함
+# .dockerignore 파일 내용
+venv/
+__pycache__/
+*.pyc
+.git/
