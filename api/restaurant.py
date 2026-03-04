@@ -1,6 +1,6 @@
 import shutil
-import json  # 👈 추가됨 (Redis 데이터를 파이썬용으로 변환)
-import redis  # 👈 추가됨 (초고속 캐시 메모리)
+import json
+import redis
 from fastapi import UploadFile, File, Body
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -30,9 +30,7 @@ from service.naver_collector import search_restaurants_by_location
 
 router = APIRouter(prefix="/restaurants")
 
-# ==========================================
-# 🚀 Redis 창고 연결 (로컬호스트의 6379 포트)
-# ==========================================
+
 rd = redis.StrictRedis(host='localhost', port=6379, db=0, decode_responses=True)
 
 
@@ -62,7 +60,7 @@ def format_reviews(session: Session, reviews):
 # ==========================================
 @router.post("", status_code=201)
 def save_restaurant_api(
-        request: RestaurantCreate,  # 👈 여기 이름을 RestaurantCreate로 맞췄습니다
+        request: RestaurantCreate,
         session: Session = Depends(get_db),
         current_user: User = Depends(get_current_user)
 ):
@@ -80,10 +78,7 @@ def save_restaurant_api(
     return {"message": f"{restaurant.name} 찜 성공!"}
 
 
-# ==========================================
-# 2. ⚡ 맛집 검색 API (GET) - Redis 0.1초 캐싱 적용!
-# 프론트엔드에서 [검색] 버튼 누르면 실행됨 (DB 저장 X)
-# ==========================================
+# 맛집 검색
 @router.get("/search")
 def search_naver_handler(query: str):
     # 1. Redis 창고에 'query(예: 영등포꽃삼)' 결과가 있는지 먼저 확인

@@ -355,7 +355,7 @@ def get_all_collections(session: Session):
 def delete_collection(session: Session, collection_id: int, user_id: int):
     collection = session.query(Collection).filter(Collection.id == collection_id).first()
 
-    # ❌ 컬렉션이 없거나, 주인이 아니면 False 반환
+    # 컬렉션이 없거나, 주인이 아니면 False 반환
     if not collection or collection.user_id != user_id:
         return False
 

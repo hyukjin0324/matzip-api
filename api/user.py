@@ -111,11 +111,10 @@ def check_nickname_api(nickname:str, session: Session = Depends(get_db)):
     return {"is_available": True}
 
 
-from sqlalchemy import text # 맨 위 import 모여있는 곳에 없다면 추가해주세요
 
-# --- 기존 코드들 ---
 
-# 🚀 DB 강제 수리 API (임시)
+
+# DB 강제 수리 API
 @router.get("/fix-db")
 def fix_database(session: Session = Depends(get_db)):
     try:
@@ -127,9 +126,8 @@ def fix_database(session: Session = Depends(get_db)):
         return {"msg": f"💡 이미 만들어졌거나 다른 문제가 있습니다: {str(e)}"}
 
 
-# ==========================================
-# 🚀 1. 유저의 공개/비공개 상태 확인 API (이게 없어서 404 에러가 났습니다!)
-# ==========================================
+
+# 유저의 공개/비공개 상태 확인 API
 @router.get("/{user_id}/status")
 def get_user_status(user_id: int, session: Session = Depends(get_db)):
     user = session.query(User).filter(User.id == user_id).first()
@@ -138,9 +136,8 @@ def get_user_status(user_id: int, session: Session = Depends(get_db)):
     return {"is_public": user.is_public}
 
 
-# ==========================================
-# 🚀 2. 내 프로필 공개/비공개 설정 변경 API
-# ==========================================
+
+# 내 프로필 공개/비공개 설정 변경 API
 @router.put("/privacy")
 def update_privacy(request: dict, current_user: User = Depends(get_current_user), session: Session = Depends(get_db)):
     user = session.query(User).filter(User.id == current_user.id).first()
@@ -151,9 +148,8 @@ def update_privacy(request: dict, current_user: User = Depends(get_current_user)
     return {"message": "공개 설정이 변경되었습니다."}
 
 
-# ==========================================
-# 🚀 3. 팔로우 / 언팔로우 토글 API
-# ==========================================
+
+# 팔로우 / 언팔로우
 @router.post("/follow/{target_user_id}")
 def toggle_follow(
         target_user_id: int,

@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <title>맛집 플레이스 - 네이버 지도 스타일 SNS</title>
+    <title>맛집 플레이스 - 토스 스타일 SNS</title>
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4ad41a694830868d7750ce3f8324ba85&libraries=services"></script>
 
     <style>
         :root {
-            --naver-green: #03c75a;
-            --naver-green-hover: #02b350;
+            /* 🔵 네이버 그린 -> 토스 블루로 변경 */
+            --toss-blue: #3182f6;
+            --toss-blue-hover: #1b64da;
             --bg-gray: #f4f7f8;
             --border-gray: #e2e5e8;
             --text-black: #242424;
@@ -50,13 +51,13 @@
         .search-box {
             display: flex;
             gap: 8px;
-            border: 2px solid var(--naver-green);
+            border: 2px solid var(--toss-blue);
             border-radius: 8px;
             padding: 4px 8px;
         }
         .search-box input { border: none; outline: none; flex: 1; padding: 8px; font-size: 15px; font-family: inherit; }
         .btn-search {
-            background: var(--naver-green);
+            background: var(--toss-blue);
             color: white;
             border: none;
             padding: 8px 15px;
@@ -79,7 +80,7 @@
             font-size: 14px;
             transition: all 0.2s;
         }
-        .nav-tab.active { color: var(--naver-green); border-bottom-color: var(--naver-green); background: white; }
+        .nav-tab.active { color: var(--toss-blue); border-bottom-color: var(--toss-blue); background: white; }
 
         /* 필터 바 */
         .filter-bar {
@@ -167,16 +168,17 @@
         .card-btns { display: flex; gap: 8px; }
         .btn-card { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #ddd; background: white; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: inherit; }
         .btn-card:hover { background: #f9f9f9; }
-        .btn-card.primary { border-color: var(--naver-green); color: var(--naver-green); background: #f2fcf5; }
-        .btn-card.primary:hover { background: #e8f9ee; }
+        /* 🔵 카드 버튼 색상 토스 블루 톤으로 변경 */
+        .btn-card.primary { border-color: var(--toss-blue); color: var(--toss-blue); background: #f0f6ff; }
+        .btn-card.primary:hover { background: #e1edff; }
 
         /* 피드(커뮤니티) 스타일 */
         .feed-item { background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; border: 1px solid #f0f0f0; box-shadow: 0 4px 15px rgba(0,0,0,0.04); transition: transform 0.2s ease; }
         .feed-item:hover { transform: translateY(-2px); }
         .feed-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
         .user-info { display: flex; align-items: center; gap: 10px; font-weight: bold; cursor: pointer; color: #333; }
-        .btn-follow { font-size: 11px; padding: 5px 12px; border-radius: 8px; border: 1px solid var(--naver-green); color: var(--naver-green); background: white; font-weight: bold; cursor: pointer; transition: all 0.2s; font-family: inherit; }
-        .btn-follow.active { background: var(--naver-green); color: white; }
+        .btn-follow { font-size: 11px; padding: 5px 12px; border-radius: 8px; border: 1px solid var(--toss-blue); color: var(--toss-blue); background: white; font-weight: bold; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+        .btn-follow.active { background: var(--toss-blue); color: white; }
 
         /* 클릭 가능한 리뷰 영역 스타일 (깜빡임 효과 포함) */
         .feed-content { font-size: 15px; line-height: 1.6; margin-bottom: 12px; color: #444; cursor: pointer; transition: opacity 0.2s; }
@@ -198,16 +200,16 @@
         .comment-date { font-size: 10px; color: #bbb; margin-left: auto; white-space: nowrap; padding-top: 2px; }
         .comment-input-box { display: flex; gap: 8px; margin-top: 15px; background: #f8f9fa; padding: 10px; border-radius: 10px; }
         .comment-input-box input { flex: 1; padding: 10px 14px; border: 1px solid #eee; border-radius: 10px; font-size: 13px; outline: none; font-family: inherit; }
-        .comment-input-box input:focus { border-color: var(--naver-green); background: white; }
-        .btn-comment-send { background: var(--naver-green); color: white; border: none; padding: 0 15px; border-radius: 10px; cursor: pointer; font-size: 13px; font-weight: bold; font-family: inherit; transition: background 0.2s; }
-        .btn-comment-send:hover { background: var(--naver-green-hover); }
+        .comment-input-box input:focus { border-color: var(--toss-blue); background: white; }
+        .btn-comment-send { background: var(--toss-blue); color: white; border: none; padding: 0 15px; border-radius: 10px; cursor: pointer; font-size: 13px; font-weight: bold; font-family: inherit; transition: background 0.2s; }
+        .btn-comment-send:hover { background: var(--toss-blue-hover); }
 
         /* 인증 화면 */
         .auth-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: var(--bg-gray); display: flex; justify-content: center; align-items: center; z-index: 1000; }
         .auth-card { width: 380px; background: white; padding: 45px; border-radius: 28px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); text-align: center; }
-        .auth-card h2 { color: var(--naver-green); margin-bottom: 35px; font-size: 26px; }
+        .auth-card h2 { color: var(--toss-blue); margin-bottom: 35px; font-size: 26px; }
         .auth-card input { width: 100%; padding: 16px; margin-bottom: 14px; border: 1px solid #eee; border-radius: 12px; font-size: 15px; outline: none; transition: border 0.2s; font-family: inherit; }
-        .auth-card input:focus { border-color: var(--naver-green); }
+        .auth-card input:focus { border-color: var(--toss-blue); }
 
         /* 모달 시스템 */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; display: none; backdrop-filter: blur(3px); }
@@ -215,8 +217,9 @@
 
         .hidden { display: none !important; }
         .btn-full { width: 100%; padding: 15px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 12px; transition: all 0.2s; font-family: inherit; }
-        .bg-green { background: var(--naver-green); color: white; }
-        .bg-green:hover { background: var(--naver-green-hover); }
+        /* 🔵 bg-green을 bg-blue로 변경 */
+        .bg-blue { background: var(--toss-blue); color: white; }
+        .bg-blue:hover { background: var(--toss-blue-hover); }
 
         /* 체크박스 스타일 */
         .check-item { display:flex; align-items:center; gap:10px; padding:12px; border:1px solid #eee; border-radius:10px; margin-bottom:10px; cursor:pointer; transition:background 0.2s; }
@@ -230,8 +233,8 @@
             <h2>🍽️ 맛집 플레이스</h2>
             <input type="text" id="login-id" placeholder="아이디">
             <input type="password" id="login-pw" placeholder="비밀번호">
-            <button class="btn-full bg-green" onclick="login()">로그인</button>
-            <p onclick="toggleView('signup')" style="margin-top:25px; color:var(--text-gray); font-size:14px; cursor:pointer;">처음이신가요? <b style="color:var(--naver-green)">회원가입</b></p>
+            <button class="btn-full bg-blue" onclick="login()">로그인</button>
+            <p onclick="toggleView('signup')" style="margin-top:25px; color:var(--text-gray); font-size:14px; cursor:pointer;">처음이신가요? <b style="color:var(--toss-blue)">회원가입</b></p>
         </div>
     </div>
 
@@ -241,8 +244,8 @@
             <input type="text" id="sign-id" placeholder="아이디">
             <input type="password" id="sign-pw" placeholder="비밀번호">
             <input type="text" id="sign-nick" placeholder="닉네임">
-            <button class="btn-full bg-green" onclick="signup()">가입하기</button>
-            <p onclick="toggleView('login')" style="margin-top:25px; color:var(--text-gray); font-size:14px; cursor:pointer;">이미 계정이 있나요? <b style="color:var(--naver-green)">로그인</b></p>
+            <button class="btn-full bg-blue" onclick="signup()">가입하기</button>
+            <p onclick="toggleView('login')" style="margin-top:25px; color:var(--text-gray); font-size:14px; cursor:pointer;">이미 계정이 있나요? <b style="color:var(--toss-blue)">로그인</b></p>
         </div>
     </div>
 
@@ -250,7 +253,7 @@
         <div class="sidebar">
             <div class="sidebar-header">
                 <div class="welcome-row">
-                    <span id="welcome-msg" style="font-weight:bold; color:var(--naver-green); font-size:15px;"></span>
+                    <span id="welcome-msg" style="font-weight:bold; color:var(--toss-blue); font-size:15px;"></span>
                     <span onclick="logout()" style="font-size:12px; color:#aaa; cursor:pointer; font-weight:600;">로그아웃</span>
                 </div>
                 <div class="search-box">
@@ -295,9 +298,9 @@
         <h3 style="margin-top:0; color:#333;">🗂️ 맛집 컬렉션 발행</h3>
         <input type="text" id="collection-title" placeholder="컬렉션 제목 (예: 대구 찐 막창 맛집들)" style="width:100%; padding:14px; margin-bottom:12px; border-radius:10px; border:1px solid #ddd; outline:none; font-family:inherit;">
         <textarea id="collection-desc" rows="3" placeholder="이 리스트에 대한 팁이나 설명을 적어주세요." style="width:100%; padding:14px; border-radius:12px; border:1px solid #ddd; outline:none; font-family:inherit; resize:none; margin-bottom:18px; line-height:1.5;"></textarea>
-        <p style="font-size:13px; font-weight:bold; margin-bottom:10px; color:var(--naver-green);">✅ 리스트에 담을 식당 선택</p>
+        <p style="font-size:13px; font-weight:bold; margin-bottom:10px; color:var(--toss-blue);">✅ 리스트에 담을 식당 선택</p>
         <div id="collection-rest-list" style="max-height:220px; overflow-y:auto; border:1px solid #eee; padding:12px; border-radius:12px; margin-bottom:20px; background:#fcfcfc;"></div>
-        <button class="btn-full bg-green" onclick="submitCollection()">발행하기</button>
+        <button class="btn-full bg-blue" onclick="submitCollection()">발행하기</button>
         <button class="btn-full" onclick="closeAllModals()" style="background:#f1f3f5; color:#666; margin-top:8px;">취소</button>
     </div>
 
@@ -316,18 +319,18 @@
             <input type="file" id="review-image" accept="image/*" style="width:100%; padding:10px; border:1px solid #eee; border-radius:10px; font-size:13px;">
         </div>
         <textarea id="review-content" rows="5" placeholder="맛, 서비스, 분위기는 어떠셨나요? 찐 후기를 남겨주세요." style="width:100%; padding:16px; border-radius:14px; border:1px solid #ddd; outline:none; font-family:inherit; resize:vertical; line-height:1.6;"></textarea>
-        <button class="btn-full bg-green" onclick="submitReview()">저장하기</button>
+        <button class="btn-full bg-blue" onclick="submitReview()">저장하기</button>
         <button class="btn-full" onclick="closeAllModals()" style="background:#f1f3f5; color:#666; margin-top:8px;">취소</button>
     </div>
 
     <div id="list-modal" class="modal">
-        <h3 id="list-modal-title" style="margin-top:0; border-bottom:2px solid var(--naver-green); padding-bottom:15px;">📜 방문자 리뷰</h3>
+        <h3 id="list-modal-title" style="margin-top:0; border-bottom:2px solid var(--toss-blue); padding-bottom:15px;">📜 방문자 리뷰</h3>
         <div id="review-list-container" style="max-height:450px; overflow-y:auto;"></div>
         <button class="btn-full" onclick="closeAllModals()" style="background:#f1f3f5; color:#666; margin-top:20px;">닫기</button>
     </div>
 
     <div id="ranking-modal" class="modal">
-        <h3 style="margin-top:0; text-align:center; color:var(--naver-green);">🏆 명예의 전당</h3>
+        <h3 style="margin-top:0; text-align:center; color:var(--toss-blue);">🏆 명예의 전당</h3>
         <p style="text-align:center; font-size:13px; color:#888; margin-bottom:25px;">우리 커뮤니티를 빛낸 활동왕들을 소개합니다!</p>
         <div id="rankingContent"></div>
         <button class="btn-full" onclick="closeAllModals()" style="background:#f1f3f5; color:#666; margin-top:20px;">닫기</button>
@@ -339,44 +342,39 @@
         <div style="display:flex; justify-content:space-around; margin:20px 0; padding:15px; background:#f9f9f9; border-radius:12px;">
             <div style="text-align:center; cursor:pointer;" onclick="showFollowList('follower')">
                 <div style="font-size:12px; color:#888;">팔로워</div>
-                <div id="profile-follower-count" style="font-weight:bold; font-size:18px; color:var(--naver-green);">0</div>
+                <div id="profile-follower-count" style="font-weight:bold; font-size:18px; color:var(--toss-blue);">0</div>
             </div>
             <div style="text-align:center; cursor:pointer;" onclick="showFollowList('following')">
                 <div style="font-size:12px; color:#888;">팔로잉</div>
-                <div id="profile-following-count" style="font-weight:bold; font-size:18px; color:var(--naver-green);">0</div>
+                <div id="profile-following-count" style="font-weight:bold; font-size:18px; color:var(--toss-blue);">0</div>
             </div>
         </div>
 
         <div id="follow-list-area" style="max-height:150px; overflow-y:auto; margin-bottom:15px; border:1px solid #eee; padding:10px; border-radius:8px; display:none; background:#fff;">
             </div>
 
-        <button id="profile-rest-btn" class="btn-full bg-green">이 유저의 찜 목록 보기</button>
+        <button id="profile-rest-btn" class="btn-full bg-blue">이 유저의 찜 목록 보기</button>
         <button class="btn-full" onclick="closeAllModals()" style="background:#f1f3f5; color:#666; margin-top:8px;">닫기</button>
     </div>
 
     <script>
-        // ✅ (추가) 노란 별 마커 이미지 URL (여긴 선언만!)
         const STAR_MARKER_SRC = "https://maps.google.com/mapfiles/kml/paddle/ylw-stars.png";
-
-        // ✅ (추가) 실제 MarkerImage 객체는 kakao SDK 로딩 후에 만들어야 해서 일단 null
         let STAR_MARKER_IMAGE = null;
         const BASE_URL = "";
-        let markerMap = {};     // restaurant_id -> marker
-        let infoWindowMap = {}; // restaurant_id -> infowindow
+        let markerMap = {};
+        let infoWindowMap = {};
         let kakaoMap = null;
         let markers = [];
         let isPublic = true;
         let currentCollections = [];
 
-        // =========================================================
-        // ✅✅✅ [추가만] 1) 인포윈도우(가게 카드) HTML 생성기: 전역
-        // =========================================================
         function buildPlaceInfoHtml(item) {
             const photo = item.img_url || 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=400&fit=crop';
             const rating = (item.rating !== undefined) ? item.rating : "0.0";
             const reviewCount = (item.review_count !== undefined) ? item.review_count : 0;
             const safeName = (item.name || item.title || "").replace(/'/g, "\\'");
 
+            // 🔵 인포윈도우 내의 버튼도 토스 블루(#3182f6)로 변경
             return `
               <div style="
                 width:260px; font-family:Pretendard, sans-serif;
@@ -399,7 +397,7 @@
                   </div>
                   <div style="display:flex; gap:8px;">
                     <button onclick="openReviewList(${item.id}, '${safeName}')"
-                      style="flex:1; padding:8px; border-radius:10px; border:1px solid #03c75a; background:#f2fcf5; color:#03c75a; font-weight:800; cursor:pointer;">
+                      style="flex:1; padding:8px; border-radius:10px; border:1px solid #3182f6; background:#f0f6ff; color:#3182f6; font-weight:800; cursor:pointer;">
                       리뷰 보기
                     </button>
                     <button onclick="openWriteModal(${item.id}, '${safeName}')"
@@ -412,9 +410,6 @@
             `;
         }
 
-        // =========================================================
-        // ✅✅✅ [추가만] 2) 내 찜 카드 클릭 → 지도 이동 + 인포윈도우 열기
-        // =========================================================
         function focusPlaceOnMap(restaurantId) {
             if (!kakaoMap) return;
 
@@ -422,24 +417,19 @@
             const iw = infoWindowMap[restaurantId];
             if (!marker || !iw) return;
 
-            // 다른 인포 닫기
             Object.values(infoWindowMap).forEach(x => x.close());
 
             const pos = marker.getPosition();
-
             const TARGET_LEVEL = 4;
-
             const curLevel = kakaoMap.getLevel();
             if(curLevel > TARGET_LEVEL){
               kakaoMap.setLevel(TARGET_LEVEL, {anchor: pos});
              }
 
-
             kakaoMap.panTo(pos);
             iw.open(kakaoMap, marker);
         }
 
-        // 🚀 [수정] 카드 생성기 (사진 오류 방지, 동적 해시태그, 찜 삭제 버튼 통합)
         function generateNaverStyleCard(item, isSearch = false) {
             const realPhoto = item.img_url || 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=400&fit=crop';
             const rating = (item.rating !== undefined) ? item.rating : "0.0";
@@ -459,14 +449,12 @@
 
             let btnHtml = "";
             if (isSearch) {
-                // ✅ [추가만] 카드 클릭(지도이동) 방지
                 btnHtml = `
                     <button class="btn-card primary" style="width:100%;" onclick='event.stopPropagation(); saveRestaurant(${JSON.stringify(item)})'>
                         ❤️ 내 찜 목록에 추가
                     </button>`;
             } else {
                 const safeName = (item.name || item.title || "").replace(/'/g, "\\'");
-                // ✅ [추가만] 카드 클릭(지도이동) 방지
                 btnHtml = `
                     <div class="card-btns">
                         <button class="btn-card primary" onclick="event.stopPropagation(); openReviewList(${item.id}, '${safeName}')">👀 리뷰 보기</button>
@@ -475,7 +463,6 @@
                     </div>`;
             }
 
-            // ✅✅✅ [추가만] 카드 전체 클릭 시 지도 이동 + 인포윈도우
             return `
                 <div class="food-card" onclick="focusPlaceOnMap(${item.id})" style="cursor:pointer;">
                     <div class="food-image-wrapper">
@@ -558,7 +545,6 @@
             level: 8
         });
 
-          // ✅ (추가) kakao.maps 로딩 이후에만 생성해야 함
             const STAR_MARKER_SIZE = new kakao.maps.Size(40, 40);
             const STAR_MARKER_OFFSET = new kakao.maps.Point(20, 40);
             STAR_MARKER_IMAGE = new kakao.maps.MarkerImage(
@@ -571,11 +557,8 @@
         function updateMarkers(list) {
             if (!kakaoMap || typeof kakao === 'undefined' || !kakao.maps.services) return;
 
-            // 기존 마커 제거
             markers.forEach(m => m.setMap(null));
             markers = [];
-
-            // ✅✅✅ [추가만] 맵핑 초기화 (안 하면 이전 목록이 남아서 엉킬 수 있음)
             markerMap = {};
             infoWindowMap = {};
 
@@ -604,7 +587,6 @@
 
                         bounds.extend(coords);
 
-                        // ✅ 마커 클릭 시 "리뷰" X → "가게 카드 인포윈도우" O
                         kakao.maps.event.addListener(marker, 'click', () => {
                             Object.values(infoWindowMap).forEach(x => x.close());
                             iw.open(kakaoMap, marker);
@@ -635,7 +617,6 @@
             } else if(tab === 'rank') showRankings();
         }
 
-        // 🚀 [수정] 찜 목록 렌더링 (내 프로필 관리 버튼 추가)
         async function renderMyRestaurants(userId, nickname = "내") {
             const token = localStorage.getItem('token');
             const myId = localStorage.getItem('my_id');
@@ -650,11 +631,10 @@
                 if (userId != myId) {
                     backBtn = `<button onclick="switchMainTab('community')" style="margin-bottom:15px; padding:10px 18px; border:1px solid #ddd; background:white; border-radius:10px; cursor:pointer; font-weight:700; font-family:inherit; font-size:13px; display:flex; align-items:center; gap:6px;">🔙 커뮤니티로 돌아가기</button>`;
                 } else {
-                    // 👇 내 프로필 관리 버튼 추가
                     createBtn = `
                         <div style="display:flex; gap:10px; margin-bottom:20px;">
                             <button onclick="openProfile(${myId}, '${localStorage.getItem('my_username')}')" class="btn-full" style="margin:0; background:#fff; border:1px solid #ddd; color:#333;">👤 내 프로필 관리</button>
-                            <button onclick="openCreateCollectionModal()" class="btn-full bg-green" style="margin:0;">🗂️ 리스트 발행</button>
+                            <button onclick="openCreateCollectionModal()" class="btn-full bg-blue" style="margin:0;">🗂️ 리스트 발행</button>
                         </div>
                     `;
                 }
@@ -670,7 +650,7 @@
 
                 if (userId == myId) document.getElementById('my-count-text').innerText = `찜 ${list.length}개`;
 
-                area.innerHTML = backBtn + createBtn + `<h4 style='padding-left:5px; margin-top:0; margin-bottom:15px;'>📍 ${nickname} 맛집 찜 목록 <span style="color:var(--naver-green);">${list.length}</span></h4>`;
+                area.innerHTML = backBtn + createBtn + `<h4 style='padding-left:5px; margin-top:0; margin-bottom:15px;'>📍 ${nickname} 맛집 찜 목록 <span style="color:var(--toss-blue);">${list.length}</span></h4>`;
                 if(list.length === 0) area.innerHTML += "<p style='text-align:center; padding:40px; color:#bbb;'>아직 찜한 맛집이 없어요.</p>";
                 list.forEach(item => area.innerHTML += generateNaverStyleCard(item, false));
             } catch(e) { area.innerHTML = `<p style='text-align:center; color:red;'>오류 발생</p>`; }
@@ -690,7 +670,6 @@
             } catch(e) { area.innerHTML = "<p style='text-align:center; color:red;'>검색 오류</p>"; }
         }
 
-        // 🚀 [수정] 컬렉션 로드 (개수 표시 복구)
         async function loadCollections() {
             const area = document.getElementById('list-render-area');
             const myId = localStorage.getItem('my_id');
@@ -703,7 +682,6 @@
                 currentCollections.forEach(c => {
                     let delBtn = c.user_id == myId ? `<button onclick="deleteCollection(${c.collection_id}, event)" style="float:right; border:none; background:none; color:var(--heart-red); cursor:pointer; font-weight:700; font-size:12px;">🗑️ 삭제</button>` : "";
 
-                    // 👇 "맛집 N곳 전체보기" 텍스트 복구
                     const countText = c.restaurants ? c.restaurants.length : 0;
 
                     area.innerHTML += `
@@ -736,7 +714,6 @@
             c.restaurants.forEach(item => area.innerHTML += generateNaverStyleCard(item, false));
         }
 
-        // 🚀 [수정] 커뮤니티 피드 (팔로우 버튼 상태 표시 + 클릭 시 조회수 증가)
         async function loadCommunityFeed() {
             const area = document.getElementById('list-render-area');
             area.innerHTML = "<p style='text-align:center; padding:40px; color:#aaa;'>피드를 가져오는 중...</p>";
@@ -761,7 +738,6 @@
                         </div>
                     `).join('');
 
-                    // 팔로우 버튼 동적 생성 (상태 유지)
                     let followBtnHtml = "";
                     if (item.user_id != myId) {
                         const btnClass = item.is_followed ? "btn-follow active" : "btn-follow";
@@ -769,7 +745,6 @@
                         followBtnHtml = `<button class="${btnClass}" onclick="toggleFollow(${item.user_id}, this)">${btnText}</button>`;
                     }
 
-                    // 하트 상태 유지
                     const heartClass = item.is_liked ? "liked" : "";
 
                     area.innerHTML += `
@@ -778,7 +753,7 @@
                                 <div class="user-info" onclick="openProfile(${item.user_id}, '${item.nickname}')">👤 ${item.nickname}</div>
                                 ${followBtnHtml}
                             </div>
-                            <div style="font-weight:bold; font-size:17px; margin-bottom:10px; color:var(--naver-green);">🍽️ ${item.restaurant_name}</div>
+                            <div style="font-weight:bold; font-size:17px; margin-bottom:10px; color:var(--toss-blue);">🍽️ ${item.restaurant_name}</div>
 
                             <div class="feed-content" onclick="readFeedReview(${item.review_id}, this)">"${item.content}"</div>
                             ${imgHtml}
@@ -803,7 +778,6 @@
             } catch(e) { area.innerHTML = "<p style='color:red; text-align:center;'>피드 로드 실패</p>"; }
         }
 
-        // 🚀 [수정] 리뷰 모아보기 (조회수 표시 + 클릭 이벤트)
         async function openReviewList(id, name) {
             document.getElementById('list-modal-title').innerText = `${name} 리뷰 모아보기`;
             openModal('list-modal');
@@ -815,7 +789,6 @@
 
             reviews.forEach(r => {
                 let img = r.image_url ? `<img src="${BASE_URL}${r.image_url}" style="width:100%; border-radius:14px; margin-top:12px;">` : '';
-                // 클릭 시 readReviewModal 호출하여 조회수 증가
                 container.innerHTML += `
                     <div class="modal-review-item" onclick="readReviewModal(${r.id}, this)">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
@@ -832,7 +805,6 @@
             });
         }
 
-        // 🚀 [신규] 팝업창 안에서 리뷰 클릭 시 조회수 증가시키는 함수
         async function readReviewModal(id, el) {
             const res = await fetch(`${BASE_URL}/restaurants/reviews/${id}`, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
@@ -844,7 +816,6 @@
             }
         }
 
-        // 🚀 [신규] 커뮤니티 피드에서 리뷰 클릭 시 조회수 증가시키는 함수
         async function readFeedReview(id, el) {
             const res = await fetch(`${BASE_URL}/restaurants/reviews/${id}`, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
@@ -856,7 +827,6 @@
             }
         }
 
-        // 🚀 [수정] 프로필 (순서 변경: 데이터 수신 후 화면 표시)
         async function openProfile(userId, nickname) {
             const f1 = await fetch(`${BASE_URL}/users/${userId}/followers`);
             window.currentFollowers = await f1.json();
@@ -884,7 +854,7 @@
             area.innerHTML = list.map(u => `
                 <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #eee;">
                     <span style="font-weight:bold; font-size:13px; color:#333;">${u.nickname}</span>
-                    <button onclick="openProfile(${u.user_id}, '${u.nickname}')" style="font-size:11px; padding:4px 10px; border:1px solid var(--naver-green); color:var(--naver-green); border-radius:6px; background:white; cursor:pointer;">프로필</button>
+                    <button onclick="openProfile(${u.user_id}, '${u.nickname}')" style="font-size:11px; padding:4px 10px; border:1px solid var(--toss-blue); color:var(--toss-blue); border-radius:6px; background:white; cursor:pointer;">프로필</button>
                 </div>
             `).join('');
         }
@@ -1018,9 +988,6 @@
                 toggleView('main'); document.getElementById('welcome-msg').innerText = `👋 ${localStorage.getItem('my_username')}님, 환영합니다!`;
                 initMap(); switchMainTab('my');
             } else toggleView('login');
-
-            // ✅ (주의) 기존에 window.onload 내부에 있던 buildPlaceInfoHtml은
-            // 이제 전역 함수가 있으니 필요 없음. (남아있어도 전역이 사용됨)
         };
     </script>
 </body>
