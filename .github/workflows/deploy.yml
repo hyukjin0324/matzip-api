@@ -21,6 +21,6 @@ jobs:
             # 기존에 돌아가던 서버가 있으면 끄고, 없으면 그냥 넘어감
             sudo docker rm -f matzip-server || true
             # 최신 코드로 다시 빌드 (이미지는 matzip-api 이름 그대로 사용)
-            sudo docker build -t matzip-api .
+            sudo docker build --no-cache -t matzip-api .
             # 서버 다시 실행
             sudo docker run -d --network="host" --name matzip-server matzip-api
